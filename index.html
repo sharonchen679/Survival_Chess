@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Survival Chess - by Sharon Chen</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1> Survival Chess</h1>
+    <h3 id="developer"> by Sharon Chen</h3>
+
+    <p id="description">
+        A single-player Chess game with a twist of luck
+        <br>
+    </p>
+    <div id="game_rules">
+        <h2 id="rules_header">Game Rules:</h2>
+        <p id="rules">
+            Legal moves are exactly like classic Chess (except: no castling)
+            <br> The goal is to gain points by capturing black pieces
+            <br> captures are possible only with the same piece type
+            <br> (for example: a black-king can be captured only by a white-king)
+            <br>
+            <br> Blocks are added randomly according to difficulty
+            <br> Try to survive as long as possible before the blocks destroy all your pieces
+            <br>
+        </p>
+    </div>
+    <h3 id="tip"> tip:
+        <br> Extra points are given for captures in a row,
+        <br> and for clearing all the blocks from the board</h3>
+
+    <div id="bottom_div">
+        <h2 id=difficulty_header> Select Difficulty:
+            <select id="difficulty">
+                <option value="4">Easy</option>
+                <option value="3">Medium</option>
+                <option value="2">Hard</option>
+                <option value="1">Impossible</option>
+            </select>
+        </h2>
+        <a id="start" href="game.html">
+            <h2>START</h2>
+        </a>
+    </div>
+    <script>
+        document.getElementById("start").addEventListener("click", function () {
+            localStorage.difficulty = document.getElementById("difficulty").value;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+.chessboard {
+    width: 600px;
+    height: 600px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 20px solid #333;
+}
+
+.square {
+    float: left;
+    width: 12.5%;
+    height: 12.5%;
+    font-size: 300%;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle; 
+}
+
+.white              {background-color: #fff;}
+.black              {background-color: #999;}
+.possible_move      {box-shadow: inset 0 0 0 10px #00CED1;}
+.possible_capture   {background-color: #00CED1;}
+.piece_to_move      {background-color: #00CED1;}
+.block              {background-color: #004;}
+.block_piece        {box-shadow: inset 0 0 0 10px #004;}
+
+.empty:before           {content: '';}
+.white_king:before      {content: '\2654';}
+.white_queen:before     {content: '\2655';}
+.white_rook:before      {content: '\2656';}
+.white_bishop:before    {content: '\2657';}
+.white_knight:before    {content: '\2658';}
+.white_pawn:before      {content: '\2659';}
+.black_king:before      {content: '\265A';}
+.black_queen:before     {content: '\265B';}
+.black_rook:before      {content: '\265C';}
+.black_bishop:before    {content: '\265D';}
+.black_knight:before    {content: '\265E';}
+.black_pawn:before      {content: '\265F';}
+
+#score_div {
+    position: absolute;
+    top: 20px;
+    left: 740px;
+}
+
+/*=============== Mobile Style ===============*/
+@media screen and (max-width: 834px) {
+    .chessboard {width: 530px; height:  530px;}
+    #score_div {top: 560px; left: 45px;}
+    #score {font-size: 20px}
+    #score_text {font-size: 20px}
+}
+@media screen and (max-width: 610px) {
+    .chessboard {width: 460px; height:  460px;}
+    #score_div {top: 500px; left: 45px;}
+    #score {font-size: 18px}
+    #score_text {font-size: 18px}
+
+}

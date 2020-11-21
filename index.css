@@ -1,0 +1,111 @@
+/*=============== Web Style ===============*/
+
+body {
+    margin: 0px;
+    text-align: center;
+    border: 20px dashed #fff;
+    background-color: #999;
+}
+#game_rules {
+    width: 100%;
+    border-top: 2.5px solid #00CED1;
+    border-bottom: 2.5px solid #00CED1;
+    background-color: #fff;
+}
+h1{
+    font-size: 48px; 
+    margin-bottom: 0px;
+}
+#developer{margin: 0px 0px;}
+#description{
+    font-size: 25px; 
+    text-align: center; 
+}
+#rules_header{margin-bottom: 0px;}
+#rules{
+    font-size: 20px; 
+    margin-top: 0px;
+}
+#tip{margin-bottom: 0px;}
+#difficulty{
+    padding: 5px;
+    background: cornflowerblue;
+}
+#start{
+    margin-left: 30px; 
+    margin-top:-28px; 
+    text-decoration: none; 
+    font-size: 30px;
+}
+#bottom_div{
+    display: flex; 
+    justify-content: center; 
+}
+
+/*=============== Mobile Style ===============*/
+@media screen and (max-width: 834px) {
+    body {border: 18px dashed #fff;}
+    h1{padding: 0px 25px;}
+    #description{
+        text-align: center; 
+        padding: 0px 20px;
+    }
+    #rules{
+        font-size: 18px; 
+        margin-top: 0px;
+        padding: 0 25px;
+    }
+    #tip{
+        margin: 20px 0px;
+        padding: 0px 25px;
+    }
+    #start{
+        margin-left: 10px; 
+        margin-right: 10px;
+        margin-top:-12px; 
+        text-decoration: none; 
+        font-size: 25px;
+    }
+    #difficulty_header{margin-left: 20px;}
+    #difficulty{position: relative;}
+}
+
+@media screen and (max-width: 414px) {
+    h1{
+        padding: 0px 25px;
+        margin-bottom: 10px;
+    }
+    #description{margin: 50px 0px;}
+    #game_rules {
+        width: 100%;
+        padding: 30px 0px;
+        border-top: 2.5px solid #00CED1;
+        border-bottom: 2.5px solid #00CED1;
+        background-color: #fff;
+    }
+    #rules_header{margin-bottom: 20px;
+    }
+    #rules{
+        font-size: 18px; 
+        margin-top: 0px;
+        padding: 0 25px;
+    }
+    #tip{
+        margin: 20px 0px;
+        padding: 20px 25px;
+    }
+    #start{
+        margin-left: 10px; 
+        margin-right: 10px;
+        margin-top:-12px; 
+        text-decoration: none; 
+        font-size: 25px;
+    }
+    #difficulty_header{margin-left: 20px;}
+    #difficulty{position: relative;}
+    #bottom_div{
+        display: flex; 
+        justify-content: center; 
+        margin-bottom: 20px;
+    }
+}
