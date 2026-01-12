@@ -53,7 +53,8 @@ function play(square) {
         }
         if(Math.floor(Math.random()*difficulty) == 0) { // equals TRUE with probability of 1/difficulty
             board_down();
-            add_blocks();
+            if(!game_is_over) // board_down() may have ended the game and already called add_blocks()
+                add_blocks();
         }
         captures_in_a_row = 0;
         set_score_text("");
@@ -62,13 +63,15 @@ function play(square) {
     }
     else if(square.classList.contains("possible_capture")) {
         capture(square);
-        bonus = clear_blocks(square);
+        var bonus = clear_blocks(square);
         captures_in_a_row++;
         score += Math.pow(2,captures_in_a_row-1); // 1st = 1 point, 2nd = 2 points, 3rd = 4, 4th = 8, 5th = 16, ...
         update_score();
         set_score_text("captures in a row: "+ captures_in_a_row + bonus);
-        // at this point, there is always a possible move, so no need to check it
-        // (same piece goes back to the previous square)        
+        // at this point, it seems like there will always be a possible move (same piece goes back to the previous square)
+        // But if the last capture was with a pawn, and there are no other legal moves, then the game should be over
+        if(no_possible_moves())
+            game_over();
     }
     else { //first click
         var letter = letters.indexOf(square.id.charAt(0));
@@ -255,7 +258,7 @@ function lose_piece(square) {
 }
 
 function copy_from_above(square,above) { // assuming square is always empty
-    if(above.classList.contains("empty")) return // nothing to copy
+    if(above.classList.contains("empty")) return; // nothing to copy
     square.classList.remove("empty");
 
     let piece_type = get_piece_type(above);
