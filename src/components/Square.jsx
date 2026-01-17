@@ -103,10 +103,17 @@ function Square({
       {/* Block visualization - brick pattern */}
       {square.isBlock && renderBricks()}
       
-      {/* Block piece visualization - bricks + piece */}
+      {/* Block piece visualization - transparent center with border frame + piece */}
       {square.isBlockPiece && (
         <>
-          {renderBricks()}
+          {/* Border frame effect (transparent center, block-colored border) */}
+          <div 
+            className="absolute inset-0 z-0"
+            style={{
+              boxShadow: 'inset 0 0 0 8px #4A3728'
+            }}
+          />
+          {/* Black piece on transparent background */}
           <span className="relative z-10 text-piece-black drop-shadow-lg">
             {pieceSymbol}
           </span>
