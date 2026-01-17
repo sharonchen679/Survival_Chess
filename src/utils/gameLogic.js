@@ -90,9 +90,12 @@ function addKingMoves(board, letter, num, possibleMoves, possibleCaptures, piece
     if (inRange(newLetter, newNum)) {
       const squareId = getSquareId(newLetter, newNum);
       const square = board[squareId];
-      if (square.piece === 'empty') {
+      // Can move to empty square without blocks
+      if (square.piece === 'empty' && !square.isBlock && !square.isBlockPiece) {
         possibleMoves.push(squareId);
-      } else if (square.isBlockPiece && square.piece === `black_${pieceType}`) {
+      } 
+      // Can capture block piece of same type
+      else if (square.isBlockPiece && square.piece === `black_${pieceType}`) {
         possibleCaptures.push(squareId);
       }
     }
@@ -116,13 +119,18 @@ function addRookMoves(board, letter, num, possibleMoves, possibleCaptures, piece
       const squareId = getSquareId(newLetter, newNum);
       const square = board[squareId];
       
-      if (square.piece === 'empty') {
+      // Can move to empty square without blocks
+      if (square.piece === 'empty' && !square.isBlock && !square.isBlockPiece) {
         possibleMoves.push(squareId);
-      } else {
-        if (square.isBlockPiece && square.piece === `black_${pieceType}`) {
-          possibleCaptures.push(squareId);
-        }
-        break;
+      } 
+      // Can capture block piece of same type
+      else if (square.isBlockPiece && square.piece === `black_${pieceType}`) {
+        possibleCaptures.push(squareId);
+        break; // Stop after capture
+      }
+      // Blocked by block or other piece
+      else {
+        break; // Stop - cannot move through blocks
       }
     }
   });
@@ -140,13 +148,18 @@ function addBishopMoves(board, letter, num, possibleMoves, possibleCaptures, pie
       const squareId = getSquareId(newLetter, newNum);
       const square = board[squareId];
       
-      if (square.piece === 'empty') {
+      // Can move to empty square without blocks
+      if (square.piece === 'empty' && !square.isBlock && !square.isBlockPiece) {
         possibleMoves.push(squareId);
-      } else {
-        if (square.isBlockPiece && square.piece === `black_${pieceType}`) {
-          possibleCaptures.push(squareId);
-        }
-        break;
+      } 
+      // Can capture block piece of same type
+      else if (square.isBlockPiece && square.piece === `black_${pieceType}`) {
+        possibleCaptures.push(squareId);
+        break; // Stop after capture
+      }
+      // Blocked by block or other piece
+      else {
+        break; // Stop - cannot move through blocks
       }
     }
   });
@@ -164,9 +177,12 @@ function addKnightMoves(board, letter, num, possibleMoves, possibleCaptures) {
     if (inRange(newLetter, newNum)) {
       const squareId = getSquareId(newLetter, newNum);
       const square = board[squareId];
-      if (square.piece === 'empty') {
+      // Can move to empty square without blocks
+      if (square.piece === 'empty' && !square.isBlock && !square.isBlockPiece) {
         possibleMoves.push(squareId);
-      } else if (square.isBlockPiece && square.piece === 'black_knight') {
+      } 
+      // Can capture block piece of same type
+      else if (square.isBlockPiece && square.piece === 'black_knight') {
         possibleCaptures.push(squareId);
       }
     }
@@ -178,13 +194,15 @@ function addPawnMoves(board, letter, num, possibleMoves, possibleCaptures) {
   
   // Forward move
   const forwardId = getSquareId(letter, num + 1);
-  if (board[forwardId].piece === 'empty') {
+  const forwardSquare = board[forwardId];
+  if (forwardSquare.piece === 'empty' && !forwardSquare.isBlock && !forwardSquare.isBlockPiece) {
     possibleMoves.push(forwardId);
     
     // Double step from row 2
     if (num === 2) {
       const doubleId = getSquareId(letter, num + 2);
-      if (board[doubleId].piece === 'empty') {
+      const doubleSquare = board[doubleId];
+      if (doubleSquare.piece === 'empty' && !doubleSquare.isBlock && !doubleSquare.isBlockPiece) {
         possibleMoves.push(doubleId);
       }
     }
@@ -193,13 +211,15 @@ function addPawnMoves(board, letter, num, possibleMoves, possibleCaptures) {
   // Diagonal captures
   if (letter > 1) {
     const leftId = getSquareId(letter - 1, num + 1);
-    if (board[leftId].isBlockPiece && board[leftId].piece === 'black_pawn') {
+    const leftSquare = board[leftId];
+    if (leftSquare.isBlockPiece && leftSquare.piece === 'black_pawn') {
       possibleCaptures.push(leftId);
     }
   }
   if (letter < 8) {
     const rightId = getSquareId(letter + 1, num + 1);
-    if (board[rightId].isBlockPiece && board[rightId].piece === 'black_pawn') {
+    const rightSquare = board[rightId];
+    if (rightSquare.isBlockPiece && rightSquare.piece === 'black_pawn') {
       possibleCaptures.push(rightId);
     }
   }

@@ -15,6 +15,12 @@ export default {
         'piece-white': '#F5E6D3',
         'piece-black': '#2C2C2C',
       },
+      width: {
+        '15': '60px',
+      },
+      height: {
+        '15': '60px',
+      },
     },
   },
   plugins: [],

@@ -232,12 +232,14 @@ function GamePage() {
   return (
     <div className="min-h-screen bg-[#FAF8F5] p-4">
       <div className="max-w-4xl mx-auto">
-        {/* Score Display */}
-        <div className="mb-4 text-center">
+        {/* Score Display - Fixed height to prevent jumping */}
+        <div className="mb-4 text-center" style={{ minHeight: '80px' }}>
           <h2 className="text-2xl font-semibold text-[#8B5A3C]">score: {score}</h2>
-          {scoreText && (
-            <h2 className="text-xl text-[#5C7A7A]">{scoreText}</h2>
-          )}
+          <div style={{ minHeight: '32px' }}>
+            {scoreText && (
+              <h2 className="text-xl text-[#5C7A7A]">{scoreText}</h2>
+            )}
+          </div>
         </div>
         
         {/* Board */}

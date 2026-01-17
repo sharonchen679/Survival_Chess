@@ -9,3 +9,50 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Ensure chess board squares are always perfect squares */
+.grid.grid-cols-8 > * {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+}
+
+/* Fast pulse animation for possible captures */
+@keyframes fastPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+}
+
+.fast-pulse {
+  animation: fastPulse 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Wooden board texture effect */
+.bg-board-light {
+  background: linear-gradient(135deg, #A0785A 0%, #B89070 100%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bg-board-dark {
+  background: linear-gradient(135deg, #8B5A3C 0%, #9A6A4C 100%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure brick grid has no gaps and covers entire area */
+.grid.grid-cols-2.grid-rows-2 {
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.grid.grid-cols-2.grid-rows-2 > * {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}

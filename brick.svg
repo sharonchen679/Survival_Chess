@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Outer square (dark warm brown) -->
+  <rect x="0" y="0" width="100" height="100" fill="#4A3728"/>
+  
+  <!-- Inner square (charcoal) - centered with roughly equal space -->
+  <rect x="14.5" y="14.5" width="71" height="71" fill="#5D4E37"/>
+</svg>
