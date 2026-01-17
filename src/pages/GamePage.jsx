@@ -204,8 +204,27 @@ function GamePage() {
   const clearBlocks = (capturedSquareId) => {
     const letter = letters.indexOf(capturedSquareId.charAt(0))
     const num = parseInt(capturedSquareId.charAt(1))
+    
+    // First, check current board to see if this will clear all blocks
+    const currentBoard = { ...board }
+    for (let l = 1; l <= 8; l++) {
+      if (l !== letter) {
+        const squareId = getSquareId(l, num)
+        currentBoard[squareId] = { piece: 'empty', isBlock: false, isBlockPiece: false }
+      }
+    }
+    
+    // Check if no more blocks will remain after this clear
+    const hasBlocks = Object.values(currentBoard).some(sq => sq.isBlock)
     let bonusText = ''
     
+    if (!hasBlocks) {
+      const bonus = 6 - difficulty
+      setScore(prev => prev + bonus)
+      bonusText = ` + BONUS: ${bonus}`
+    }
+    
+    // Now update the board
     setBoard(prev => {
       const newBoard = { ...prev }
       for (let l = 1; l <= 8; l++) {
@@ -214,15 +233,6 @@ function GamePage() {
           newBoard[squareId] = { piece: 'empty', isBlock: false, isBlockPiece: false }
         }
       }
-      
-      // Check if no more blocks
-      const hasBlocks = Object.values(newBoard).some(sq => sq.isBlock)
-      if (!hasBlocks) {
-        const bonus = 6 - difficulty
-        setScore(prev => prev + bonus)
-        bonusText = ` + BONUS: ${bonus}`
-      }
-      
       return newBoard
     })
     
